@@ -1,0 +1,55 @@
+﻿@model Eplango.Dtos.DepartmentDetailsDto
+@{
+    ViewBag.Title = "DepartmentDetails";
+}
+
+<h2>DepartmentDetails</h2>
+
+<h2>@Model.DepartmentName</h2>
+
+@*@if (Model.DepartManager != "")
+    {*@
+<h2>
+    @Model.DepartManager
+</h2>  
+
+   @*}
+    else
+    {
+
+        <h2>no manager</h2>
+    }*@
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Employees)
+                {
+                    <tr>
+
+                        <td>
+                            @item.Name
+                        </td>
+
+
+                        <td>@item.Phone</td>
+                        <td>@item.Address</td>
+
+
+
+
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>

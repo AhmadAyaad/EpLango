@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Eplango.Models.Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<li>@Html.ActionLink("Create Employee", "Create", "Employee")</li>
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(item.Name, "EmployeeDetails", "Employee", htmlAttributes: new
+                             { @class = "" }, routeValues: new { id = item.EmployeeId })
+
+                        </td>
+                        <td>@item.Address.Street, @item.Address.City, @item.Address.Country</td>
+                        <td>@item.Phone</td>
+                        @if (item.Department == null)
+                        {
+                            <td>No dept</td>
+
+                        }
+                        else
+                        {
+                            <td>@item.Department.Name</td>
+                        }
+
+                        <td>
+                            @Html.ActionLink("Edit", "Update", "Employee", htmlAttributes: new
+                   { @class = "btn btn-success" }, routeValues: new { id = item.EmployeeId })
+
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "Delete", "Employee", htmlAttributes: new
+                           {
+                             @class = "btn btn-danger",
+                             onclick = "return confirm('Are you sure you wish to delete this employee?');"
+                           },
+                                routeValues: new { id = item.EmployeeId })
+                        </td>
+
+                    </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+

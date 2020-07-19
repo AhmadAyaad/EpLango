@@ -1,0 +1,49 @@
+﻿@model Eplango.Dtos.DepartmentForCreateDto
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @using (Html.BeginForm("Create", "Department", method: FormMethod.Post, htmlAttributes:
+                   new { @class = "form-group" }))
+            {
+                @*@Html.ValidationSummary()*@
+                @Html.LabelFor(dept => dept.DepartmentName)
+                @Html.TextBoxFor(dept => dept.DepartmentName, htmlAttributes: 
+                            new { @class = "form-control" })
+
+
+
+                @Html.LabelFor(dept=>dept.SelectedManagerId, "Manager",
+               new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.DropDownListFor(dept=>dept.SelectedManagerId, 
+                        new SelectList(Model.NormalEmployees, "EmployeeId", "Name"),
+                        htmlAttributes: new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.SelectedManagerId)
+                </div>
+
+                <div class="col-sm-2 mt-5 ml-2">
+                    <input type="submit" class="btn btn-success" value="Save" />
+
+                </div>
+                <br />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+            }
+
+
+
+
+        </div>
+
+    </div>
+</div>

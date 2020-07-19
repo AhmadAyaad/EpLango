@@ -1,0 +1,65 @@
+﻿@model Eplango.Dtos.EmployeeForCreateDto
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            @using (Html.BeginForm("Create", "Employee", method: FormMethod.Post, htmlAttributes:
+    new { @class = "form-group" }))
+            {
+                @*@Html.ValidationSummary()*@
+                @Html.LabelFor(emp => emp.Employee.Name)
+                @Html.TextBoxFor(emp => emp.Employee.Name, htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(emp => emp.Employee.Name)*@
+                <br />
+                @Html.LabelFor(emp => emp.Employee.Phone)
+                @Html.TextBoxFor(emp => emp.Employee.Phone, htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(emp => emp.Employee.Phone)*@
+
+                <br />
+
+                @Html.LabelFor(emp => emp.Employee.Address.Street)
+                @Html.TextBoxFor(emp => emp.Employee.Address.Street, htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(emp => emp.Employee.Address.Street)*@
+
+                <br />
+
+                @Html.LabelFor(emp => emp.Employee.Address.City)
+                @Html.TextBoxFor(emp => emp.Employee.Address.City, htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(emp => emp.Employee.Address.City)*@
+                <br />
+
+                @Html.LabelFor(emp => emp.Employee.Address.Country)
+                @Html.TextBoxFor(emp => emp.Employee.Address.Country, htmlAttributes: new { @class = "form-control" })
+                @*@Html.ValidationMessageFor(emp => emp.Employee.Address.Country)*@
+
+                <br />
+                @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+
+                @Html.LabelFor(emp => emp.SelectedDepartmentId, "Department", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedDepartmentId, new SelectList(Model.Departments, "DepartmentId", "Name"),
+                        htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SelectedDepartmentId)
+                </div>
+
+                <div class="col-sm-2 mt-5 ml-2">
+                    <input type="submit" class="btn btn-success" value="Save" />
+
+                </div>
+            }
+
+
+
+
+        </div>
+
+    </div>
+</div>

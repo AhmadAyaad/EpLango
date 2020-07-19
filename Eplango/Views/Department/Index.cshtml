@@ -1,0 +1,60 @@
+﻿@model  IEnumerable<Eplango.Dtos.DepartmentForListDto>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<li>@Html.ActionLink("Create Department", "Create", "Department")</li>
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Department Name</th>
+                    <th scope="col">Manager</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                   
+                        <td>
+                            @Html.ActionLink(item.DepartmentName, "DepartmentDetails", "Department",
+                            htmlAttributes: new { @class = "" },
+                            routeValues: new { id = item.DepartmentId })
+                        </td>
+                   
+
+                        <td>@item.ManagerName</td>
+                 
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Department", htmlAttributes: new
+                         { @class = "btn btn-success" },
+                         routeValues: new { id = item.DepartmentId })
+
+                    </td>
+
+
+
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", "Department", htmlAttributes: new
+                       {
+                         @class = "btn btn-danger",
+                         onclick = "return confirm('Are you sure you wish to delete this department?');"
+                       },
+                            routeValues: new { id = item.DepartmentId })
+                    </td>
+
+                </tr>
+
+                }
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
